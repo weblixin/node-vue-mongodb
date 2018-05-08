@@ -3,16 +3,18 @@
 
 ## 前端vue部分  
 
-### 跨域问题
+> ### 跨域问题
+> + `main.js` 文件中 `Axios.defaults.withCredentials=true`
+> + `ajax` 请求中加入： `withCredentials: false`
 
-+ `main.js` 文件中 `Axios.defaults.withCredentials=true`
-+ `ajax` 请求中加入： `withCredentials: false`
+
 
 ## 后台node部分
 
-+ `app.js` 文件中加入 
+> ### 跨域问题
+> + `app.js` 文件中加入 
 
-```javascript  
+> ```javascript  
 
 app.all('*', function(req, res, next) {
 	var oriRefer;
@@ -27,6 +29,6 @@ app.all('*', function(req, res, next) {
 	next();
 });
 
-```
+> ```
 
 ## 数据库mongodb部分
