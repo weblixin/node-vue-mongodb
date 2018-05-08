@@ -7,14 +7,14 @@
 > + `main.js` 文件中 `Axios.defaults.withCredentials=true`
 > + `ajax` 请求中加入： `withCredentials: false`
 
-
+> ### 代码问题
 
 ## 后台node部分
 
 > ### 跨域问题
 > + `app.js` 文件中加入 
 
-> ```javascript  
+```javascript  
 
 app.all('*', function(req, res, next) {
 	var oriRefer;
@@ -29,6 +29,6 @@ app.all('*', function(req, res, next) {
 	next();
 });
 
-> ```
+```
 
 ## 数据库mongodb部分
