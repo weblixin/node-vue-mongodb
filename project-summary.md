@@ -32,6 +32,35 @@
 
 ```
 
+> ### 路由问题
+> + 路由中，children可以是页面在当前页面进行跳转
+```javascript
+
+    {
+      path: '/home',
+      component: Home,
+      meta: {
+        title: '系统首页'
+      },
+      children: [{
+          path: '/adminlist',
+          component: AdminList,
+          meta: {
+            title: '管理员列表'
+          }
+        },
+        {
+          path: '/message',
+          component: Message,
+          meta: {
+            title: '客服消息'
+          }
+        }
+      ]
+    }
+
+```
+
 ## 后台node部分
 
 > ### 跨域问题
