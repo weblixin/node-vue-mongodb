@@ -7,7 +7,7 @@
 > + `main.js` 文件中 `Axios.defaults.withCredentials=true`
 > + `ajax` 请求中加入： `withCredentials: false`
 
-> ### 代码问题
+> ### 代理问题
 > + 使用代理，将vue项目放到后台项目中---在config/index中添加代理
 
 ```javascript
