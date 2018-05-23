@@ -9,6 +9,30 @@
 
 > ### 代码问题
 
+> + 使用代理，将vue项目放到后台项目中---在config/index中添加代理
+
+```javascript
+
+    proxyTable: {// 代理表
+  	// key ： value
+  	// 代理的路劲 ： 代理的规则
+    	'/VueHandler':{
+    		target:"http://localhost:3000",// 目标服务器 node后台
+    		changeOrigin:true,// 改变服务器的 源
+    									//请求的路径           改变后的路径
+    		pathRewrite:{'/VueHandler':'/VueHandler'}// 重写的规则
+    	},
+        '/DownLoadPicHandler':{
+            target:"http://localhost:3000",// 目标服务器 node后台
+            changeOrigin:true,// 改变服务器的 源
+                                        //请求的路径           改变后的路径
+            pathRewrite:{'/DownLoadPicHandler':'/DownLoadPicHandler'}// 重写的规则
+        }
+
+    },
+
+```
+
 ## 后台node部分
 
 > ### 跨域问题
