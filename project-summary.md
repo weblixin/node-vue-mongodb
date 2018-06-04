@@ -61,6 +61,29 @@
 
 ```
 
+### 组件间的几种传值方式
+> + 父传子 ===》
+```javascript
+      父组件：引入子组件 ---  :value1="value2" --- 引号中的 value2 需要在父组件的 data 中定义 --- value1 是子组件接收的字段;
+      子组件：利用 props 接收 value1 字段，使用方式为 this.value1	
+```
+> + 子传父 ===》
+```javascript
+      父组件：引入子组件 ---  v-on:value1="value2" --- value1 需要在 methods 中定义 --- value2 是子组件传过来的字段;
+      子组件：利用 $emit 进行传值，两个参数分别为父组件监听的事件 和 需要传的值，使用方式为 this.$emit('value2', value)
+```
+> + 非父子 ===》
+```javascript
+      同级目录下，创建一个bus.js文件，文件内容是暴露一个实例vue对象，在AB组件中引入bus.js
+      A组件：this.$emit()
+      B组件：this.$on()
+```
+> + 使用vuex ===》
+```javascript
+     使用vuex，将数据或方法保存在一个js文件中，然后暴露出去，在每个组件中引入该js文件
+     state：store.state.datalist     mutations: store.commit('add', data)
+```
+
 ## 后台node部分
 
 > ### 跨域问题
