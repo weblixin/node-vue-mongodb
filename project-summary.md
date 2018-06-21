@@ -26,7 +26,8 @@
 ```
 
 > ### 路由问题
-> + 路由中，children可以使页面在当前页面进行跳转
+> + 路由中，children可以使页面在当前页面进行跳转 (但是点击浏览器自带返回按钮，会出现页面跳转，但是导航样式没有发生改变的现象，还有待解决，请谨慎使用)
+
 ```javascript
 
     <el-menu class="sliderbar-el-menu" :default-active="onRoutes" background-color="transprent" unique-opened router>
@@ -143,7 +144,9 @@
 
 ```javascript  
 
-app.all('*', function(req, res, next) {
+    express框架
+
+    app.all('*', function(req, res, next) {
 	var oriRefer;
 	if(req.headers.referer){
 	oriRefer= req.headers.referer.substring(0,req.headers.referer.indexOf("/",10));
@@ -154,10 +157,21 @@ app.all('*', function(req, res, next) {
 	res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
 	res.header("X-Powered-By",' 3.2.1')
 	next();
-});
+    });
+    
+    koa2框架
+    
+    app.use(async (ctx, next) => {
+        ctx.set('Access-Control-Allow-Headers', 'content-type,xfilecategory,xfilename,xfilesize');
+	ctx.set('Access-Control-Allow-Origin', 'http://localhost:8080');
+	ctx.set('Access-Control-Allow-Credentials', 'true');
+        ctx.set('Access-Control-Allow-Methods', 'PUT,DELETE,POST,GET,OPTIONS');
+	await next();
+    }); 
 
 ```
 
+> ### 文件上传
 > + 上传文件的模块---multer
 
 ```javascript
@@ -179,6 +193,19 @@ app.all('*', function(req, res, next) {
 	    })
 	    res.send({filename : req.file.filename+'.jpg'});
 	})
+
+```
+
+> ### 关于options的错误
+> + koa框架和vue组合使用时，vue提交的请求，无论get还是post，在network中都会显示method为options，并且报404错误
+
+```javascript
+
+    在koa/app.js中的设置请求头的代码中加入
+    
+    if (ctx.request.method == "OPTIONS") {
+        ctx.response.status = 200
+    }
 
 ```
 
